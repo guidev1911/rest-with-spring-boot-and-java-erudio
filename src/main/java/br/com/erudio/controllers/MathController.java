@@ -1,5 +1,6 @@
 package br.com.erudio.controllers;
 
+import br.com.erudio.exception.UnsupportedMathOperationException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,14 +15,15 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo ){
 
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new IllegalArgumentException("apenas números são permitidos");
+            throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
 
         return convertToDouble(numberOne)+convertToDouble(numberTwo);
     }
 
     public  Double convertToDouble (String strNumber){
-        if (strNumber == null || strNumber.isEmpty()) throw new IllegalArgumentException("apenas números são permitidos");
+        if (strNumber == null || strNumber.isEmpty())
+            throw new UnsupportedMathOperationException("Please set a numeric value!");
         String number = strNumber.replace(",",".");
         return  Double.parseDouble(number);
     }
