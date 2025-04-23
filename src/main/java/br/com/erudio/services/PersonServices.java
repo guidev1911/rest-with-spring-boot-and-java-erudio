@@ -1,5 +1,6 @@
 package br.com.erudio.services;
 
+import br.com.erudio.model.Person;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -11,4 +12,15 @@ public class PersonServices {
 
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
 
+    public Person findById(String id){
+        logger.info("Finding one person!");
+
+        Person person = new Person();
+        person.setId(counter.incrementAndGet());
+        person.setFirstName("Guilherme");
+        person.setLastName("Brito");
+        person.setAddress("São Cristovão");
+        person.setGender("Male");
+        return person;
+    }
 }
