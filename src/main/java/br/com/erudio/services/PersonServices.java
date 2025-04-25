@@ -45,6 +45,9 @@ public class PersonServices {
 
         return person;
     }
+    public void delete(String id){
+        logger.info("Deleting one person!");
+    }
     private Person mockPerson(int i){
         Person person = new Person();
 
