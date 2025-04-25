@@ -40,6 +40,11 @@ public class PersonServices {
 
         return person;
     }
+    public Person update(Person person){
+        logger.info("Updating one person!");
+
+        return person;
+    }
     private Person mockPerson(int i){
         Person person = new Person();
 
