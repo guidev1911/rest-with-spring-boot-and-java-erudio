@@ -1,6 +1,4 @@
 package br.com.erudio.controllers;
-
-import br.com.erudio.exception.UnsupportedMathOperationException;
 import br.com.erudio.math.SimpleMath;
 import br.com.erudio.request.converters.NumberConverter;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +17,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo ){
 
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)){
-            throw new UnsupportedMathOperationException("Please set a numeric value!");
+            throw new IllegalArgumentException("Please set a numeric value!");
         }
 
         return math.sum(NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(numberTwo));
@@ -30,7 +28,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo ){
 
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)){
-            throw new UnsupportedMathOperationException("Please set a numeric value!");
+            throw new IllegalArgumentException("Please set a numeric value!");
         }
 
         return math.subtraction(NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(numberTwo));
@@ -41,7 +39,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo ){
 
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)){
-            throw new UnsupportedMathOperationException("Please set a numeric value!");
+            throw new IllegalArgumentException("Please set a numeric value!");
         }
 
         return math.multiplication(NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(numberTwo));
@@ -52,7 +50,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo ){
 
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)){
-            throw new UnsupportedMathOperationException("Please set a numeric value!");
+            throw new IllegalArgumentException("Please set a numeric value!");
         }
 
         return math.division(NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(numberTwo));
@@ -62,7 +60,7 @@ public class MathController {
             @PathVariable("number") String number){
 
         if (!NumberConverter.isNumeric(number)){
-            throw new UnsupportedMathOperationException("Please set a numeric value!");
+            throw new IllegalArgumentException("Please set a numeric value!");
         }
 
         return math.squareRoot(NumberConverter.convertToDouble(number));
@@ -73,7 +71,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo ){
 
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)){
-            throw new UnsupportedMathOperationException("Please set a numeric value!");
+            throw new IllegalArgumentException("Please set a numeric value!");
         }
 
         return math.mean(NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(numberTwo));
