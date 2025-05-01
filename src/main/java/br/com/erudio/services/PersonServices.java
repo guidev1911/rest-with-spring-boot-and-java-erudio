@@ -1,6 +1,6 @@
 package br.com.erudio.services;
 
-import br.com.erudio.controllers.TestLogController;
+import br.com.erudio.data.dto.PersonDTO;
 import br.com.erudio.exception.ResourceNotFoundException;
 import br.com.erudio.model.Person;
 import br.com.erudio.respository.PersonRepository;
@@ -9,65 +9,65 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import static br.com.erudio.mapper.ObjectMapper.parseListObject;
+import static br.com.erudio.mapper.ObjectMapper.parseObject;
+
 @Service
 public class PersonServices {
+
     private final AtomicLong counter = new AtomicLong();
-    private Logger logger = LoggerFactory.getLogger(TestLogController.class.getName());
+    private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
     @Autowired
     PersonRepository repository;
 
 
-    public List<Person> findAll(){
-        logger.info("Finding one person!");
+    public List<PersonDTO> findAll() {
 
-        return repository.findAll();
+        logger.info("Finding all People!");
+
+        return parseListObject(repository.findAll(), PersonDTO.class);
     }
 
-    public Person findById(Long id){
-        logger.info("Finding one person!");
+    public PersonDTO findById(Long id) {
+        logger.info("Finding one Person!");
 
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
+        var entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        return parseObject(entity, PersonDTO.class);
     }
-    public Person create(Person person){
-        logger.info("Creating one person!");
 
-        return repository.save(person);
+    public PersonDTO create(PersonDTO person) {
+
+        logger.info("Creating one Person!");
+        var entity = parseObject(person, Person.class);
+
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
-    public Person update(Person person){
-        logger.info("Updating one person!");
 
+    public PersonDTO update(PersonDTO person) {
+
+        logger.info("Updating one Person!");
         Person entity = repository.findById(person.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return repository.save(entity);
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
-    public void delete(Long id){
-        logger.info("Deleting one person!");
+
+    public void delete(Long id) {
+
+        logger.info("Deleting one Person!");
 
         Person entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id!"));
-
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         repository.delete(entity);
-    }
-    private Person mockPerson(int i){
-        Person person = new Person();
-
-        person.setId(counter.incrementAndGet());
-        person.setFirstName("First name" + i);
-        person.setLastName("Last name" + i);
-        person.setAddress("Some adress in Brazil");
-        person.setGender("Male");
-        return person;
     }
 }
