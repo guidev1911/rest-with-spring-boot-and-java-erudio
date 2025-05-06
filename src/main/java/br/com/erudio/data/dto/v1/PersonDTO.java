@@ -1,21 +1,28 @@
 package br.com.erudio.data.dto.v1;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+//import com.fasterxml.jackson.annotation.JsonProperty;
+//import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import javax.xml.crypto.Data;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
-@JsonPropertyOrder({"id", "address", "first_name", "last_name", "gender"})
+// @JsonPropertyOrder({"id", "address", "first_name", "last_name", "gender"})
 public class PersonDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    @JsonProperty("first_name")
+    // @JsonProperty("first_name")
     private String firstName;
-    @JsonProperty("last_name")
+    // @JsonProperty("last_name")
     private String lastName;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date birthday;
     private String address;
     private String gender;
 
@@ -45,6 +52,14 @@ public class PersonDTO implements Serializable {
         this.lastName = lastName;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -65,12 +80,12 @@ public class PersonDTO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonDTO person = (PersonDTO) o;
-        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
+        PersonDTO personDTO = (PersonDTO) o;
+        return Objects.equals(id, personDTO.id) && Objects.equals(firstName, personDTO.firstName) && Objects.equals(lastName, personDTO.lastName) && Objects.equals(birthday, personDTO.birthday) && Objects.equals(getAddress(), personDTO.getAddress()) && Objects.equals(gender, personDTO.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(id, firstName, lastName, birthday, getAddress(), gender);
     }
 }
