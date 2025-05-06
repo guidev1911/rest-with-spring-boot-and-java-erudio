@@ -3,8 +3,10 @@ package br.com.erudio.data.dto.v1;
 //import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import br.com.erudio.serializer.GenderSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.xml.crypto.Data;
 import java.io.Serializable;
@@ -24,6 +26,7 @@ public class PersonDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date birthday;
     private String address;
+    @JsonSerialize(using = GenderSerializer.class)
     private String gender;
 
     public PersonDTO(){}
