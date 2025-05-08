@@ -1,6 +1,6 @@
 package br.com.erudio.controllers;
 import br.com.erudio.math.SimpleMath;
-import br.com.erudio.request.converters.NumberConverter;
+import br.com.erudio.serelization.converters.NumberConverter;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
