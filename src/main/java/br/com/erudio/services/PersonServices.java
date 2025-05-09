@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import static br.com.erudio.mapper.ObjectMapper.parseListObject;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-import static br.com.erudio.mapper.ObjectMapper.parseListObject;
 import static br.com.erudio.mapper.ObjectMapper.parseObject;
 
 @Service
@@ -30,7 +31,9 @@ public class PersonServices {
 
         logger.info("Finding all People!");
 
-        return parseListObject(repository.findAll(), PersonDTO.class);
+        var persons = parseListObject(repository.findAll(), PersonDTO.class);
+        persons.forEach(this::addHateoasLinks);
+        return persons;
     }
 
     public PersonDTO findById(Long id) {
@@ -45,13 +48,17 @@ public class PersonServices {
 
     public PersonDTO create(PersonDTO person) {
 
+
         logger.info("Creating one Person!");
         var entity = parseObject(person, Person.class);
 
-        return parseObject(repository.save(entity), PersonDTO.class);
+        var dto = parseObject(repository.save(entity), PersonDTO.class);
+        addHateoasLinks(dto);
+        return dto;
     }
 
     public PersonDTO update(PersonDTO person) {
+
 
         logger.info("Updating one Person!");
         Person entity = repository.findById(person.getId())
@@ -62,7 +69,9 @@ public class PersonServices {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return parseObject(repository.save(entity), PersonDTO.class);
+        var dto = parseObject(repository.save(entity), PersonDTO.class);
+        addHateoasLinks(dto);
+        return dto;
     }
 
     public void delete(Long id) {
