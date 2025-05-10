@@ -1,6 +1,7 @@
 package br.com.erudio.services;
 
 import br.com.erudio.data.dto.v1.PersonDTO;
+import br.com.erudio.exception.RequiredObjectIsNullException;
 import br.com.erudio.model.Person;
 import br.com.erudio.respository.PersonRepository;
 import br.com.erudio.unitTests.mocks.MockPerson;
