@@ -16,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
@@ -143,6 +143,18 @@ class PersonServicesTest {
         assertEquals("Last Name Test1", result.getLastName());
         assertEquals("Female", result.getGender());
     }
+    @Test
+    void testCreateWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class,
+                () -> {
+                    service.create(null);
+                });
+
+        String expectedMessage = "It is not allowed to persist a null object!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 
     @Test
     void update() {
@@ -199,6 +211,18 @@ class PersonServicesTest {
         assertEquals("Last Name Test1", result.getLastName());
         assertEquals("Female", result.getGender());
     }
+    @Test
+    void testUpdateWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class,
+                () -> {
+                    service.update(null);
+                });
+
+        String expectedMessage = "It is not allowed to persist a null object!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 
     @Test
     void delete() {
@@ -207,5 +231,8 @@ class PersonServicesTest {
         when(repository.findById(1L)).thenReturn(Optional.of(person));
 
         service.delete(1L);
+        verify(repository, times(1)).findById(anyLong());
+        verify(repository, times(1)).delete(any(Person.class));
+        verifyNoMoreInteractions(repository);
     }
 }
