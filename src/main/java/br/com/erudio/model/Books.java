@@ -15,14 +15,14 @@ public class Books implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, length = 80)
+    @Column(nullable = false, length = 180)
     private String author;
-    @Column(name = "launch_date", nullable = false, length = 80)
+    @Column(name = "launch_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date lauchDate;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private Double price;
-    @Column(nullable = false, length = 6)
+    @Column(nullable = false, length = 250)
     private String title;
 
     public Books(){}
