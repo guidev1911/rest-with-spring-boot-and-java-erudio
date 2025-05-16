@@ -11,7 +11,7 @@ public class BooksDTO extends RepresentationModel<BooksDTO> implements Serializa
 
     private Long id;
     private String author;
-    private Date lauchDate;
+    private Date launchDate;
     private Double price;
     private String title;
     public BooksDTO(){}
@@ -32,12 +32,12 @@ public class BooksDTO extends RepresentationModel<BooksDTO> implements Serializa
         this.author = author;
     }
 
-    public Date getLauchDate() {
-        return lauchDate;
+    public Date getLaunchDate() {
+        return launchDate;
     }
 
-    public void setLauchDate(Date lauchDate) {
-        this.lauchDate = lauchDate;
+    public void setLaunchDate(Date launchDate) {
+        this.launchDate = launchDate;
     }
 
     public Double getPrice() {
@@ -62,11 +62,11 @@ public class BooksDTO extends RepresentationModel<BooksDTO> implements Serializa
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         BooksDTO booksDTO = (BooksDTO) o;
-        return Objects.equals(getId(), booksDTO.getId()) && Objects.equals(getAuthor(), booksDTO.getAuthor()) && Objects.equals(getLauchDate(), booksDTO.getLauchDate()) && Objects.equals(getPrice(), booksDTO.getPrice()) && Objects.equals(getTitle(), booksDTO.getTitle());
+        return Objects.equals(getId(), booksDTO.getId()) && Objects.equals(getAuthor(), booksDTO.getAuthor()) && Objects.equals(getLaunchDate(), booksDTO.getLaunchDate()) && Objects.equals(getPrice(), booksDTO.getPrice()) && Objects.equals(getTitle(), booksDTO.getTitle());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getId(), getAuthor(), getLauchDate(), getPrice(), getTitle());
+        return Objects.hash(super.hashCode(), getId(), getAuthor(), getLaunchDate(), getPrice(), getTitle());
     }
 }
