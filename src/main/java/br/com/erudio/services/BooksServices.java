@@ -51,8 +51,8 @@ public class BooksServices {
 
         logger.info("Creating one Book!");
         var entity = parseObject(book, Books.class);
-
-        var dto = parseObject(repository.save(entity), BooksDTO.class);
+        var saved = repository.save(entity);
+        var dto = parseObject(saved, BooksDTO.class);
         addHateoasLinks(dto);
         return dto;
     }
