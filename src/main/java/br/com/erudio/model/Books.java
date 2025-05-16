@@ -19,7 +19,7 @@ public class Books implements Serializable {
     private String author;
     @Column(name = "launch_date", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date lauchDate;
+    private Date launchDate;
     @Column(nullable = false)
     private Double price;
     @Column(nullable = false, length = 250)
@@ -43,12 +43,12 @@ public class Books implements Serializable {
         this.author = author;
     }
 
-    public Date getLauchDate() {
-        return lauchDate;
+    public Date getLaunchDate() {
+        return launchDate;
     }
 
-    public void setLauchDate(Date lauchDate) {
-        this.lauchDate = lauchDate;
+    public void setLaunchDate(Date launchDate) {
+        this.launchDate = launchDate;
     }
 
     public Double getPrice() {
@@ -72,11 +72,11 @@ public class Books implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Books books = (Books) o;
-        return Objects.equals(getId(), books.getId()) && Objects.equals(getAuthor(), books.getAuthor()) && Objects.equals(getLauchDate(), books.getLauchDate()) && Objects.equals(getPrice(), books.getPrice()) && Objects.equals(getTitle(), books.getTitle());
+        return Objects.equals(getId(), books.getId()) && Objects.equals(getAuthor(), books.getAuthor()) && Objects.equals(getLaunchDate(), books.getLaunchDate()) && Objects.equals(getPrice(), books.getPrice()) && Objects.equals(getTitle(), books.getTitle());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getAuthor(), getLauchDate(), getPrice(), getTitle());
+        return Objects.hash(getId(), getAuthor(), getLaunchDate(), getPrice(), getTitle());
     }
 }
