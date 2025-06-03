@@ -53,7 +53,27 @@ public class PersonServices {
                 .withSelfRel();
         return assembler.toModel(peopleWithLinks, findAllLink);
     }
+    public PagedModel<EntityModel<PersonDTO>> findByName(String firstName, Pageable pageable) {
 
+        logger.info("Finding People by name!");
+
+        var people = repository.findPeopleByName(firstName, pageable);
+
+        var peopleWithLinks = people.map(person -> {
+            var dto = parseObject(person, PersonDTO.class);
+            addHateoasLinks(dto);
+            return dto;
+        });
+
+        Link findAllLink = WebMvcLinkBuilder.linkTo(
+                        WebMvcLinkBuilder.methodOn(PersonController.class)
+                                .findAll(
+                                        pageable.getPageNumber(),
+                                        pageable.getPageSize(),
+                                        String.valueOf(pageable.getSort())))
+                .withSelfRel();
+        return assembler.toModel(peopleWithLinks, findAllLink);
+    }
     public PersonDTO findById(Long id) {
         logger.info("Finding one Person!");
 
