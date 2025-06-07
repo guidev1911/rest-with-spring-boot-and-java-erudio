@@ -1,4 +1,4 @@
-package br.com.erudio.integrationstests.dto.wrappers;
+package br.com.erudio.integrationstests.dto.wrappers.json;
 
 import br.com.erudio.integrationstests.dto.PersonDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
