@@ -1,5 +1,6 @@
 package br.com.erudio.integrationstests.controllers.withyaml.mapper;
 
+import br.com.erudio.integrationstests.dto.wrappers.xml.PagedModelPerson;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.type.TypeFactory;
