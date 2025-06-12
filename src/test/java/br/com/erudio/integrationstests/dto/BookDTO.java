@@ -1,15 +1,15 @@
-package br.com.erudio.data.dto.v1;
+package br.com.erudio.integrationstests.dto;
 
-import org.springframework.hateoas.RepresentationModel;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import org.springframework.hateoas.server.core.Relation;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-
+@XmlRootElement
 @Relation(collectionRelation = "books")
-public class BooksDTO extends RepresentationModel<BooksDTO> implements Serializable {
+public class BookDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,8 @@ public class BooksDTO extends RepresentationModel<BooksDTO> implements Serializa
     private Date launchDate;
     private Double price;
     private String title;
-    public BooksDTO(){}
+
+    public BookDTO() {}
 
     public Long getId() {
         return id;
@@ -62,15 +63,13 @@ public class BooksDTO extends RepresentationModel<BooksDTO> implements Serializa
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        BooksDTO booksDTO = (BooksDTO) o;
-        return Objects.equals(getId(), booksDTO.getId()) && Objects.equals(getAuthor(), booksDTO.getAuthor()) && Objects.equals(getLaunchDate(), booksDTO.getLaunchDate()) && Objects.equals(getPrice(), booksDTO.getPrice()) && Objects.equals(getTitle(), booksDTO.getTitle());
+        BookDTO book = (BookDTO) o;
+        return Objects.equals(getId(), book.getId()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getLaunchDate(), book.getLaunchDate()) && Objects.equals(getPrice(), book.getPrice()) && Objects.equals(getTitle(), book.getTitle());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getId(), getAuthor(), getLaunchDate(), getPrice(), getTitle());
+        return Objects.hash(getId(), getAuthor(), getLaunchDate(), getPrice(), getTitle());
     }
 }
