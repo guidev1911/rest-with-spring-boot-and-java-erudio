@@ -78,4 +78,10 @@ public class PersonDTO implements Serializable {
     public int hashCode() {
         return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender(), getEnabled());
     }
+
+    public void setPhotoUrl(String url) {
+    }
+
+    public void setProfileUrl(String url) {
+    }
 }

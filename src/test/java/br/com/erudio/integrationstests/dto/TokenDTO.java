@@ -1,5 +1,6 @@
 package br.com.erudio.integrationstests.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serializable;

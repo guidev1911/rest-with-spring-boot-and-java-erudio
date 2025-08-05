@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/book/v1")
 @Tag(name = "Book", description = "Endpoints for Managing Book")
 public class BooksController implements BooksControllerDocs {
 

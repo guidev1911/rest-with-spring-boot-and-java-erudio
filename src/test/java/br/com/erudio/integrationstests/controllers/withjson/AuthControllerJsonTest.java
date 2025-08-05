@@ -38,9 +38,8 @@ class AuthControllerJsonTest extends AbstractIntegrationTest {
                 .then()
                 .statusCode(200)
                 .extract()
-                .body()
-                .as(TokenDTO.class);
-
+                .jsonPath()
+                .getObject("body", TokenDTO.class);
         assertNotNull(tokenDto.getAccessToken());
         assertNotNull(tokenDto.getRefreshToken());
     }
