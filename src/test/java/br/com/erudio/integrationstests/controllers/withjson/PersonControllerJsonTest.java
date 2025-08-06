@@ -64,8 +64,8 @@ class PersonControllerJsonTest extends AbstractIntegrationTest {
                 .then()
                 .statusCode(200)
                 .extract()
-                .jsonPath()
-                .getObject("body", TokenDTO.class);
+                .body()
+                .as(TokenDTO.class);
 
 
         specification = new RequestSpecBuilder()

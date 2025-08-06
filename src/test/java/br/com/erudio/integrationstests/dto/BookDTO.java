@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.Objects;
 
 @XmlRootElement
-@Relation(collectionRelation = "books")
 public class BookDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
