@@ -33,9 +33,10 @@ jobs:
 
     - name: Push to Docker Hub Container Registry
       run: |
-        docker tag rest-with-spring-boot-and-java-erudio-app:latest rest-with-spring-boot-and-java-erudio-app:${{ github.run_id }}
+        docker tag rest-with-spring-boot-and-java-erudio-app:latest ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-and-java-erudio-app:${{ github.run_id }}
         
-        docker push rest-with-spring-boot-and-java-erudio-app:latest
-        docker push rest-with-spring-boot-and-java-erudio-app:${{ github.run_id }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-and-java-erudio-app:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/rest-with-spring-boot-and-java-erudio-app:${{ github.run_id }}
+
 
 
